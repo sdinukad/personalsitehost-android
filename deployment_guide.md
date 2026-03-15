@@ -1,12 +1,12 @@
-# Personal Site Deployment Guide (MediaPad M6 + Termux)
+# Personal Site Deployment Guide (Android Device + Termux)
 
 This guide takes you through the networking and server setup required to host your site publicly.
 
 ---
 
-## 0. Prerequisites (On the Tablet via SSH)
+## 0. Prerequisites (On the Android Device via SSH)
 
-Before beginning the server configuration, you must set up the local Linux environment on your MediaPad M6 using Termux.
+Before beginning the server configuration, you must set up the local Linux environment on your Android device using Termux.
 
 ### A. Termux & Ubuntu Setup
 Run these commands in your active SSH session:
@@ -38,10 +38,10 @@ apt install nginx curl -y
 ```
 
 ### C. File Transfer
-You must move the configuration files to the tablet. Open a **new terminal on your local machine** (not the SSH session):
+You must move the configuration files to the Android device. Open a **new terminal on your local machine** (not the SSH session):
 ```bash
 # Termux SSH runs on port 8022 by default
-# Replace '192.168.8.158' with your tablet's local IP if it changes
+# Replace '192.168.8.158' with your device's local IP if it changes
 scp -P 8022 index.html nginx_site.conf cloudflared_config.yml startup.sh user@192.168.8.158:~/
 ```
 _Note: You will move these to their correct folders in Step 2._
@@ -50,10 +50,10 @@ _Note: You will move these to their correct folders in Step 2._
 
 ## 1. Local Network Setup (Optional: Static IP)
 
-Your router assigns IPs dynamically. If your tablet's IP changes, your **local SSH access** will break and you will need to find the new IP.
+Your router assigns IPs dynamically. If your device's IP changes, your **local SSH access** will break and you will need to find the new IP.
 1. Log in to your router (usually `192.168.1.1` or `192.168.0.1`).
 2. Look for **DHCP Reservation**, **Address Reservation**, or **Static IP**.
-3. Bind your tablet's **MAC Address** to a specific IP so it never changes.
+3. Bind your device's **MAC Address** to a specific IP so it never changes.
 
 *(Note: Thanks to Cloudflare Tunnels, you **do not** need to do any Port Forwarding! You can safely delete any Port Forwarding rules you previously created for port 80/443).*
 
@@ -94,7 +94,7 @@ The tunnel protects your site and manages routing seamlessly.
    chmod +x cloudflared && mv cloudflared /usr/local/bin/
    ```
 2. **Login**: `cloudflared tunnel login`
-   *(Note: You can open the provided URL on your laptop/local machine; you do not need to do it on the tablet itself.)*
+   *(Note: You can open the provided URL on your laptop/local machine; you do not need to do it on the device itself.)*
 3. **Create Tunnel**: Run the creation command:
    ```bash
    cloudflared tunnel create mysite
@@ -124,7 +124,7 @@ The tunnel protects your site and manages routing seamlessly.
 ---
 
 ## 4. Automation (Termux:Boot)
-To make your server start when the tablet reboots:
+To make your server start when the device reboots:
 1. Exit Ubuntu (`exit`), returning to standard Termux.
 2. Create the boot directory: `mkdir -p ~/.termux/boot/`
 3. Move the startup script: `mv ~/startup.sh ~/.termux/boot/start-server.sh`

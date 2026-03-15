@@ -3,7 +3,7 @@
 # === Termux Boot Script ===
 # This runs automatically when Termux starts (via Termux:Boot or MacroDroid)
 
-# Keep the tablet awake
+# Keep the device awake
 termux-wake-lock
 
 # Start SSH server

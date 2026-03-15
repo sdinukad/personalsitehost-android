@@ -1,13 +1,13 @@
-# 🖥️ Personal Site — Hosted on a Tablet
+# 🖥️ Personal Site — Hosted on an Android Device
 
-An ultra-minimalist personal site (~2.5KB) self-hosted on a **Huawei MediaPad M6** using **Termux + Nginx + Cloudflare Tunnel**.
+An ultra-minimalist personal site (~2.5KB) self-hosted on an **Android device** using **Termux + Nginx + Cloudflare Tunnel**.
 
-> A terminal-themed single-page site served from a tablet on my desk.
+> A terminal-themed single-page site served from an Android device on my desk.
 
 ## ✨ Features
 
 - **Terminal aesthetic** — Styled like a `neofetch` output in a real terminal window
-- **Self-hosted** — Runs on a MediaPad M6 via Termux + Ubuntu (proot)
+- **Self-hosted** — Runs on an Android device via Termux + Ubuntu (proot)
 - **Cloudflare Tunnel** — Secure public access with no port forwarding required
 - **Tiny footprint** — Single HTML file, under 5KB, with embedded CSS
 - **Live uptime display** — Shows real server uptime pulled from the host
@@ -29,7 +29,7 @@ An ultra-minimalist personal site (~2.5KB) self-hosted on a **Huawei MediaPad M6
 
 ## 🚀 Getting Started
 
-1. **Clone** this repo onto your tablet (or transfer files via SCP).
+1. **Clone** this repo onto your Android device (or transfer files via SCP).
 2. Follow the step-by-step **[Deployment Guide](deployment_guide.md)** to set up Nginx and Cloudflare.
 3. Use the **[Maintenance Cheat Sheet](maintenance_cheat_sheet.md)** for day-to-day management.
 

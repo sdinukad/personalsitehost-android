@@ -6,7 +6,7 @@
 
 echo "--- Initializing Website Infrastructure ---"
 
-# 1. Keep Tablet Awake
+# 1. Keep Device Awake
 echo "[1/4] Securing wake lock..."
 termux-wake-lock
 

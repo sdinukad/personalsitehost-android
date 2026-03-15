@@ -1,11 +1,11 @@
-# Tablet Maintenance Cheat Sheet (MediaPad M6)
+# Android Device Maintenance Cheat Sheet
 
 Quick commands for managing, starting, and troubleshooting your personal site hosted at **https://suvind.qzz.io**.
 
 ---
 
-## 1. SSH Into Your Tablet
-From your laptop, connect to the tablet over your local network:
+## 1. SSH Into Your Android Device
+From your laptop, connect to the device over your local network:
 ```bash
 ssh -p 8022 192.168.8.158
 ```
@@ -22,12 +22,12 @@ launch
 This runs `~/launch-site.sh` which starts Nginx + Cloudflare Tunnel in a single Ubuntu session.
 
 ### What `launch` Does Behind the Scenes
-1. `termux-wake-lock` — Prevents the tablet from sleeping
+1. `termux-wake-lock` — Prevents the device from sleeping
 2. `sshd` — Starts the SSH server on port 8022
 3. `proot-distro login ubuntu -- bash -c "service nginx start && cloudflared tunnel run mysite"` — Starts Nginx and the tunnel together in one session
 
 ### On Reboot (Automatic)
-If Termux:Boot or MacroDroid is configured, `~/.termux/boot/start-server.sh` runs automatically when the tablet powers on.
+If Termux:Boot or MacroDroid is configured, `~/.termux/boot/start-server.sh` runs automatically when the device powers on.
 
 ---
 
@@ -47,7 +47,7 @@ proot-distro login ubuntu -- service nginx status
 
 ## 4. Updating Site Content
 
-### Option A: Edit Directly on the Tablet (Inside Ubuntu)
+### Option A: Edit Directly on the Device (Inside Ubuntu)
 ```bash
 proot-distro login ubuntu
 cd /var/www/site/
@@ -111,7 +111,7 @@ cloudflared tunnel info mysite
 | `bind() to 0.0.0.0:80 failed` | Something is trying to use port 80. Make sure only port 8080 is used in `/etc/nginx/sites-enabled/personal-site` |
 | `sched_setaffinity() failed` | Normal on Android/Proot. Already fixed in nginx.conf (`worker_processes 1`, no `worker_cpu_affinity`) |
 | `Bad Gateway` on Cloudflare | Nginx isn't running. Start it with `launch` |
-| Can't SSH after reboot | Open Termux on the tablet and type `sshd` |
+| Can't SSH after reboot | Open Termux on the device and type `sshd` |
 
 ---
 

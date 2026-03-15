@@ -1,4 +1,4 @@
-# Walkthrough - Personal Site Hosting on MediaPad M6
+# Walkthrough - Personal Site Hosting on Android
 
 I have completed the preparation for your personal site hosting setup. The project is focused on an **ultra-minimalist** approach (< 5KB) to ensure high performance on your 20mbps connection.
 
@@ -24,4 +24,4 @@ I have completed the preparation for your personal site hosting setup. The proje
 
 1.  **Customize the Site**: Open `index.html` and replace placeholders (Name, GitHub URL, Discord ID) with your actual details.
 2.  **Follow the [Deployment Guide](deployment_guide.md)**: Start with the Router setup, then proceed to Nginx and Cloudflare.
-3.  **Deploy**: Copy the prepared files to your tablet and run the commands provided in the guide.
+3.  **Deploy**: Copy the prepared files to your Android device and run the commands provided in the guide.
