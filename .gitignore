@@ -1,0 +1,31 @@
+# Credentials & Secrets
+*.json
+*.pem
+cert.pem
+*.key
+
+# Tunnel credentials
+.cloudflared/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Gemini / Agent workspace
+.gemini/
+.agent*/
+_agent*/
+
+# Dependencies (just in case)
+node_modules/

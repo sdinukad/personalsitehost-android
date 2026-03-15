@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>suvin@mediapad ~ $</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0d0d0d;
+            color: #d4d4d4;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Scanline overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .terminal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            max-width: 620px;
+            width: 100%;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.05),
+                0 20px 60px rgba(0,0,0,0.8),
+                0 0 80px rgba(0, 255, 65, 0.03);
+            overflow: hidden;
+            animation: bootUp 0.6s ease-out;
+        }
+
+        @keyframes bootUp {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Title bar */
+        .title-bar {
+            background: #262626;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+            user-select: none;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green { background: #28c840; }
+
+        .title-bar span {
+            flex: 1;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-right: 52px;
+        }
+
+        /* Terminal body */
+        .terminal-body {
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .prompt { color: #28c840; font-weight: 700; }
+        .cmd { color: #e2e2e2; }
+        .flag { color: #61afef; }
+        .comment { color: #5c6370; font-style: italic; }
+        .string { color: #98c379; }
+        .output { color: #abb2bf; }
+        .error { color: #e06c75; }
+        .accent { color: #c678dd; }
+
+        /* Info block */
+        .neofetch {
+            display: flex;
+            gap: 24px;
+            margin: 16px 0;
+            padding: 12px 0;
+        }
+
+        .ascii-art {
+            color: #28c840;
+            font-size: 11px;
+            line-height: 1.3;
+            white-space: pre;
+            flex-shrink: 0;
+        }
+
+        .info {
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .info-label { color: #28c840; font-weight: 700; }
+        .info-value { color: #abb2bf; }
+        .separator {
+            color: #333;
+            margin: 4px 0;
+            letter-spacing: -1px;
+        }
+
+        /* Color palette row */
+        .colors {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+        .color-block {
+            width: 24px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        /* Links as commands */
+        .link-line {
+            margin-top: 4px;
+        }
+
+        a {
+            color: #61afef;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #98c379;
+            text-decoration: underline;
+        }
+
+        /* Blinking cursor */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #28c840;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .neofetch { flex-direction: column; gap: 12px; }
+            .ascii-art { font-size: 9px; }
+            .terminal-body { padding: 14px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="title-bar">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span>suvin@mediapad: ~</span>
+        </div>
+
+        <div class="terminal-body">
+            <!-- Boot line -->
+            <div>
+                <span class="prompt">suvin@mediapad</span><span class="cmd">:</span><span class="flag">~</span><span class="cmd">$ </span><span class="cmd">neofetch</span>
+            </div>
+
+            <!-- Neofetch block -->
+            <div class="neofetch">
+                <div class="ascii-art">   ___
+  / __\
+ / /   
+/ /___  
+\____/  
+        </div>
+                <div class="info">
+                    <span class="info-label">suvin</span><span class="info-value">@</span><span class="info-label">mediapad</span>
+                    <div class="separator">──────────────────</div>
+                    <div><span class="info-label">OS</span><span class="info-value"> ~ Ubuntu via Termux</span></div>
+                    <div><span class="info-label">Host</span><span class="info-value"> ~ Huawei MediaPad M6</span></div>
+                    <div><span class="info-label">Uptime</span><span class="info-value"> ~ <span id="uptime">calculating...</span></span></div>
+                    <div><span class="info-label">Shell</span><span class="info-value"> ~ bash 5.2</span></div>
+                    <div><span class="info-label">Status</span><span class="info-value"> ~ <span class="string">Online</span></span></div>
+                    <div class="colors">
+                        <div class="color-block" style="background:#282c34"></div>
+                        <div class="color-block" style="background:#e06c75"></div>
+                        <div class="color-block" style="background:#98c379"></div>
+                        <div class="color-block" style="background:#e5c07b"></div>
+                        <div class="color-block" style="background:#61afef"></div>
+                        <div class="color-block" style="background:#c678dd"></div>
+                        <div class="color-block" style="background:#56b6c2"></div>
+                        <div class="color-block" style="background:#abb2bf"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio -->
+            <div>
+                <span class="prompt">suvin@mediapad</span><span class="cmd">:</span><span class="flag">~</span><span class="cmd">$ </span><span class="cmd">cat</span> <span class="string">about.txt</span>
+            </div>
+            <div class="output" style="margin: 4px 0 16px 0;">I like to play around with computers.</div>
+
+            <!-- Links -->
+            <div>
+                <span class="prompt">suvin@mediapad</span><span class="cmd">:</span><span class="flag">~</span><span class="cmd">$ </span><span class="cmd">cat</span> <span class="string">links.txt</span>
+            </div>
+            <div class="link-line">
+                <span class="comment"># GitHub</span><br>
+                <i class="fa-brands fa-github" style="color:#abb2bf"></i> <a href="https://github.com/sdinukad/">github.com/sdinukad</a>
+            </div>
+            <div class="link-line">
+                <span class="comment"># Discord</span><br>
+                <i class="fa-brands fa-discord" style="color:#abb2bf"></i> <a href="https://discord.com/users/79215899625656320">discord/suvin</a>
+            </div>
+
+            <!-- Waiting prompt -->
+            <div style="margin-top: 16px;">
+                <span class="prompt">suvin@mediapad</span><span class="cmd">:</span><span class="flag">~</span><span class="cmd">$ </span><span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch real server uptime from uptime.json (updated every minute by cron)
+        function updateUptime() {
+            fetch('/uptime.json?' + Date.now())
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('uptime').textContent = data.uptime;
+                })
+                .catch(() => {
+                    document.getElementById('uptime').textContent = 'unknown';
+                });
+        }
+        updateUptime();
+        setInterval(updateUptime, 60000);
+    </script>
+</body>
+</html>
