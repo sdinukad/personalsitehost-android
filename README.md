@@ -3,6 +3,7 @@
 An ultra-minimalist personal site (~2.5KB) self-hosted on an **Android device** using **Termux + Nginx + Cloudflare Tunnel**.
 
 > A terminal-themed single-page site served from an Android device on my desk.
+> Live at https://suvind.qzz.io/ if my tablet is not switched off.
 
 ## ✨ Features
 
